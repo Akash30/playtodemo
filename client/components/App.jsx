@@ -447,12 +447,6 @@ const TrainingExamples = 'Below are some training examples for how socratic meth
                   >
                     Stop
                   </button>
-                  <a
-                    href="/chat"
-                    className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                  >
-                    View Chat
-                  </a>
                 </div>
               </>
             )}

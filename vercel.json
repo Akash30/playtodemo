@@ -30,7 +30,11 @@
     },
     {
       "source": "/chat",
-      "destination": "/dist/client/index.html"
+      "destination": "/server.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/server.js"
     }
   ],
   "buildCommand": "npm run build",
