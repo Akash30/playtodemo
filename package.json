@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server.js --dev",
     "start": "node server.js",
-    "build": "echo 'Starting build...' && npm run build:client && npm run build:server && echo 'Build complete' && ls -la dist",
+    "build": "echo 'Starting build...' && npm run build:client && npm run build:server && echo 'Build complete'",
     "build:client": "echo 'Building client...' && vite build --outDir dist/client --ssrManifest",
     "build:server": "echo 'Building server...' && vite build --outDir dist/server --ssr /index.js",
     "preview": "vite preview",
