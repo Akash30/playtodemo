@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import logo from "/assets/panda.jpeg";
 import Chat from "./Chat";
 import playtoLogo from "/assets/playto-logo.png";
+import audioWaveGif from "/assets/icons8-audio-wave.gif";
 
 // Helper function to safely access localStorage
 const getLocalStorage = () => {
@@ -11,7 +12,7 @@ const getLocalStorage = () => {
   return null;
 };
 
-export default function App() {
+export default function App({ url }) {
   const [isSessionActive, setIsSessionActive] = useState(false);
   const [events, setEvents] = useState([]);
   const [chatEvents, setChatEvents] = useState([]);
@@ -169,21 +170,21 @@ If the student is silent for more than 2 minutes, check in. Use ideas from "Grow
 const activityPrompt = `Now for this maker project specifically, the student needs to trying to build a bluetooth speaker using two speakers, 1 battery case, 1 circuit board, and 1 switch, along with 4 wooden panels to house the components. All components connect to the circuit board.
 The core to understanding the speaker is this circuit board with the following components:
 
-Bluetooth Module (Small integrated circuit labeled “Bluetooth”):
+Bluetooth Module (Small integrated circuit labeled "Bluetooth"):
   • Function: Receives audio signals wirelessly via Bluetooth from a smartphone or other device.
   • Questions for Understanding:
-  • “How do you think the audio signal from your phone reaches this circuit?”
-  • “What might happen after this circuit receives the wireless signal?”
+  • "How do you think the audio signal from your phone reaches this circuit?"
+  • "What might happen after this circuit receives the wireless signal?"
   • Conceptual Understanding:
   • The Bluetooth module decodes wireless signals, converting them into electrical signals that the rest of the speaker components can understand and use.
 
 ⸻
 
-2. Large White Terminals (labeled “Speaker”):
+2. Large White Terminals (labeled "Speaker"):
   • Function: Connect directly to the speakers (horns), transmitting electrical signals that turn into sound vibrations.
   • Questions for Understanding:
-  • “What do you think happens to the electrical signals when they reach the speakers?”
-  • “Why might these connections be thicker or larger than others?”
+  • "What do you think happens to the electrical signals when they reach the speakers?"
+  • "Why might these connections be thicker or larger than others?"
   • Conceptual Understanding:
   • Stronger, clearer signals pass through these terminals to drive speaker cones effectively, turning electrical energy into sound energy through vibrations.
 
@@ -192,8 +193,8 @@ Bluetooth Module (Small integrated circuit labeled “Bluetooth”):
 3. Red Terminal (Battery Connection):
   • Function: Connects the battery, providing electrical power to the entire circuit.
   • Questions for Understanding:
-  • “What happens inside the circuit when electricity from the battery flows in?”
-  • “Why is it important that the positive and negative connections are correct?”
+  • "What happens inside the circuit when electricity from the battery flows in?"
+  • "Why is it important that the positive and negative connections are correct?"
   • Conceptual Understanding:
   • Provides necessary energy for the Bluetooth chip, amplifier, and speakers, ensuring the system operates effectively.
 
@@ -202,18 +203,18 @@ Bluetooth Module (Small integrated circuit labeled “Bluetooth”):
 4. Small White Terminal (Switch Connection):
   • Function: Connects the switch, allowing the user to turn the device on and off.
   • Questions for Understanding:
-  • “How does the switch affect the flow of electricity in the circuit?”
-  • “What might happen if we removed the switch?”
+  • "How does the switch affect the flow of electricity in the circuit?"
+  • "What might happen if we removed the switch?"
   • Conceptual Understanding:
   • Controls the power flow, allowing the user to safely and conveniently activate or deactivate the circuit.
 
 ⸻
 
-5. Capacitor (Black cylindrical component, labeled “47 35V”):
+5. Capacitor (Black cylindrical component, labeled "47 35V"):
   • Function: Stores and regulates electric charge, stabilizing voltage.
   • Questions for Understanding:
-  • “What do you think the role of this component is in managing electricity in the circuit?”
-  • “How might electricity fluctuate without a component like this?”
+  • "What do you think the role of this component is in managing electricity in the circuit?"
+  • "How might electricity fluctuate without a component like this?"
   • Conceptual Understanding:
   • Smooths out voltage fluctuations, ensuring consistent performance of the speaker by providing stable power.
 
@@ -222,8 +223,8 @@ Bluetooth Module (Small integrated circuit labeled “Bluetooth”):
 6. Oscillator (Small metallic oval component):
   • Function: Generates timing signals used by the Bluetooth module to coordinate wireless communication accurately.
   • Questions for Understanding:
-  • “What purpose do you think accurate timing serves in a Bluetooth device?”
-  • “How might timing issues affect the sound quality?”
+  • "What purpose do you think accurate timing serves in a Bluetooth device?"
+  • "How might timing issues affect the sound quality?"
   • Conceptual Understanding:
   • Ensures the Bluetooth signals are correctly timed, providing reliable wireless audio without interruptions or distortions.
 
@@ -232,8 +233,8 @@ Bluetooth Module (Small integrated circuit labeled “Bluetooth”):
 7. Integrated Circuits (Small black rectangles with legs, microchips):
   • Function: Process signals (both audio and power) to amplify and manage the operation of the speaker.
   • Questions for Understanding:
-  • “What processes might be happening within these small chips?”
-  • “How might these chips affect the volume or quality of the sound?”
+  • "What processes might be happening within these small chips?"
+  • "How might these chips affect the volume or quality of the sound?"
   • Conceptual Understanding:
   • Amplify audio signals, process wireless data, manage power distribution, and ensure coordinated operation of the speaker.
 `
@@ -387,8 +388,8 @@ const TrainingExamples = 'Below are some training examples for how socratic meth
     }
   }, [dataChannel]);
 
-  // Get the current path from window.location.pathname
-  const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+  // Use the url prop from server or fallback to window.location
+  const path = url || (typeof window !== 'undefined' ? window.location.pathname : '/');
 
   return path === '/chat' ? (
     <Chat events={chatEvents} />
@@ -434,7 +435,7 @@ const TrainingExamples = 'Below are some training examples for how socratic meth
         {isSessionActive && (
           <>
             <img
-              src="/assets/icons8-audio-wave.gif"
+              src={audioWaveGif}
               alt="Audio Visualization"
               className="w-32 h-32 mt-4"
             />
