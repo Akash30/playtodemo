@@ -9,6 +9,10 @@
       "destination": "/api/token"
     },
     {
+      "source": "/assets/:path*",
+      "destination": "/dist/client/assets/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/server.js"
     }
@@ -16,5 +20,5 @@
   "buildCommand": "npm run build",
   "framework": "vite",
   "installCommand": "npm install",
-  "outputDirectory": "client/dist"
+  "outputDirectory": "dist"
 } 

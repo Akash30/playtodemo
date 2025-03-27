@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "build": "echo 'Starting build...' && npm run build:client && echo 'Build complete'",
-    "build:client": "echo 'Building client...' && vite build --outDir dist/client --ssrManifest",
+    "build": "echo 'Starting build...' && npm run build:client && echo 'Build complete' && echo 'Current directory:' && pwd && echo 'Directory contents:' && ls -la && echo 'Dist directory contents:' && ls -la dist && echo 'Client dist contents:' && ls -la dist/client",
+    "build:client": "echo 'Building client...' && vite build",
     "preview": "vite preview",
     "devinstall": "zx ../../devinstall.mjs -- node server.js --dev",
     "lint": "eslint . --ext .js,.jsx --fix"
