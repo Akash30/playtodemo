@@ -7,7 +7,7 @@ export function render(url) {
   return ReactDOMServer.renderToString(
     <React.StrictMode>
       <StaticRouter location={url}>
-        <App />
+        <App url={url} />
       </StaticRouter>
     </React.StrictMode>
   )

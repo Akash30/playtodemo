@@ -60,7 +60,9 @@ if (process.env.NODE_ENV !== 'production') {
 // Render the React client (SSR)
 app.use("*", async (req, res, next) => {
   const url = req.originalUrl;
-  console.log("Handling URL:", url);
+  console.log("Server received URL:", url);
+  console.log("Request path:", req.path);
+  console.log("Request method:", req.method);
 
   try {
     let template;
@@ -84,7 +86,9 @@ app.use("*", async (req, res, next) => {
       render = renderFn;
     }
 
+    console.log("Rendering with URL:", url);
     const appHtml = await render(url);
+    console.log("Rendered HTML:", appHtml?.html?.substring(0, 100) + "...");
     const html = template.replace(`<!--ssr-outlet-->`, appHtml?.html || '');
     res.status(200).set({ "Content-Type": "text/html" }).end(html);
   } catch (e) {
@@ -94,6 +98,7 @@ app.use("*", async (req, res, next) => {
     }
     // If SSR fails, serve the index.html file to let client-side routing handle it
     if (process.env.NODE_ENV === 'production') {
+      console.log("Falling back to client-side routing");
       res.sendFile(path.join(__dirname, 'dist/client/index.html'));
     } else {
       next(e);
