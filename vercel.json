@@ -17,24 +17,12 @@
       "destination": "/dist/client/entry-client.js"
     },
     {
-      "source": "/entry-server.js",
+      "source": "/chat",
       "destination": "/dist/client/entry-server.js"
     },
     {
-      "source": "/base.css",
-      "destination": "/dist/client/base.css"
-    },
-    {
-      "source": "/",
-      "destination": "/dist/client/index.html"
-    },
-    {
-      "source": "/chat",
-      "destination": "/server.js"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/server.js"
+      "destination": "/dist/client/entry-server.js"
     }
   ],
   "buildCommand": "npm run build",

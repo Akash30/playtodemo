@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "build": "echo 'Starting build...' && rm -rf dist && mkdir -p dist && NODE_ENV=production npm run build:client && NODE_ENV=production SSR_BUILD=true npm run build:server && cp server.js dist/",
+    "build": "echo 'Starting build...' && rm -rf dist && mkdir -p dist && NODE_ENV=production npm run build:client && NODE_ENV=production SSR_BUILD=true npm run build:server",
     "build:client": "echo 'Building client...' && vite build",
     "build:server": "echo 'Building server...' && vite build --ssr entry-server.jsx",
     "preview": "vite preview",
