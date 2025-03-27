@@ -1,0 +1,83 @@
+{
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/react-dom/cjs/react-dom.production.min.js?commonjs-exports": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/react-dom/client.js?commonjs-exports": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/react-dom/index.js?commonjs-module": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/react/cjs/react-jsx-runtime.production.min.js?commonjs-exports": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/react/cjs/react.production.min.js?commonjs-exports": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/react/index.js?commonjs-module": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/react/jsx-runtime.js?commonjs-module": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/scheduler/cjs/scheduler.production.min.js?commonjs-exports": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000/Users/akashsub/Downloads/smartToy/my-app/node_modules/scheduler/index.js?commonjs-module": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "\u0000vite/modulepreload-polyfill.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "client/assets/panda.jpeg": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "client/base.css": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "client/components/App.jsx": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "client/components/Chat.jsx": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "client/entry-client.jsx": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "client/index.html": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/@remix-run/router/dist/router.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/react-dom/cjs/react-dom.production.min.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/react-dom/client.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/react-dom/index.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/react-router/dist/index.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/react/cjs/react-jsx-runtime.production.min.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/react/cjs/react.production.min.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/react/index.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/react/jsx-runtime.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/scheduler/cjs/scheduler.production.min.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ],
+  "node_modules/scheduler/index.js": [
+    "/assets/panda-PuDO3RKA.jpeg"
+  ]
+}
