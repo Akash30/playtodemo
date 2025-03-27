@@ -25,6 +25,10 @@
       "destination": "/dist/client/base.css"
     },
     {
+      "source": "/",
+      "destination": "/server.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/server.js"
     }
@@ -32,5 +36,5 @@
   "buildCommand": "npm run build",
   "framework": "vite",
   "installCommand": "npm install",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist/client"
 } 

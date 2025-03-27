@@ -2,22 +2,17 @@ import express from "express";
 import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import "dotenv/config";
-import path from "path";
-import { fileURLToPath } from "url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = process.env.PORT || 3000;
 const apiKey = process.env.API_TOKEN;
 
-// Configure Vite middleware for React client in development
-if (process.env.NODE_ENV !== 'production') {
-  const vite = await createViteServer({
-    server: { middlewareMode: true },
-    appType: "custom",
-  });
-  app.use(vite.middlewares);
-}
+// Configure Vite middleware for React client
+const vite = await createViteServer({
+  server: { middlewareMode: true },
+  appType: "custom",
+});
+app.use(vite.middlewares);
 
 // API route for token generation
 app.get("/token", async (req, res) => {
@@ -37,12 +32,6 @@ app.get("/token", async (req, res) => {
       },
     );
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('OpenAI API error:', errorData);
-      return res.status(response.status).json(errorData);
-    }
-
     const data = await response.json();
     res.json(data);
   } catch (error) {
@@ -51,48 +40,25 @@ app.get("/token", async (req, res) => {
   }
 });
 
-// Serve static files in production
-if (process.env.NODE_ENV === 'production') {
-  // Serve static files from the dist/client directory
-  app.use(express.static(path.join(__dirname, 'dist/client')));
-  
-  // Handle client-side routing
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/client/index.html'));
-  });
-} else {
-  // In development, use Vite's SSR
-  app.use("*", async (req, res, next) => {
-    const url = req.originalUrl;
-    console.log("Handling URL:", url);
+// Render the React client
+app.use("*", async (req, res, next) => {
+  const url = req.originalUrl;
 
-    try {
-      const vite = await createViteServer({
-        server: { middlewareMode: true },
-        appType: "custom",
-      });
-      const template = await vite.transformIndexHtml(
-        url,
-        fs.readFileSync(path.join(__dirname, "./client/index.html"), "utf-8"),
-      );
-      const { render } = await vite.ssrLoadModule("./client/entry-server.jsx");
-      const appHtml = await render(url);
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml?.html);
-      res.status(200).set({ "Content-Type": "text/html" }).end(html);
-    } catch (e) {
-      console.error("SSR Error:", e);
-      vite.ssrFixStacktrace(e);
-      next(e);
-    }
-  });
-}
+  try {
+    const template = await vite.transformIndexHtml(
+      url,
+      fs.readFileSync("./client/index.html", "utf-8"),
+    );
+    const { render } = await vite.ssrLoadModule("./client/entry-server.jsx");
+    const appHtml = await render(url);
+    const html = template.replace(`<!--ssr-outlet-->`, appHtml?.html);
+    res.status(200).set({ "Content-Type": "text/html" }).end(html);
+  } catch (e) {
+    vite.ssrFixStacktrace(e);
+    next(e);
+  }
+});
 
-// For local development
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(port, () => {
-    console.log(`Express server running on *:${port}`);
-  });
-}
-
-// For Vercel
-export default app;
+app.listen(port, () => {
+  console.log(`Express server running on *:${port}`);
+});
