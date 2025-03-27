@@ -13,8 +13,8 @@
       "destination": "/server/index.js"
     }
   ],
-  "buildCommand": "pwd && npm run build",
-  "outputDirectory": "dist",
+  "buildCommand": "npm run build",
+  "outputDirectory": "/dist",
   "framework": "vite",
   "installCommand": "npm install"
 } 
