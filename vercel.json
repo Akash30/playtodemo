@@ -13,6 +13,18 @@
       "destination": "/dist/client/assets/:path*"
     },
     {
+      "source": "/entry-client.js",
+      "destination": "/dist/client/entry-client.js"
+    },
+    {
+      "source": "/entry-server.js",
+      "destination": "/dist/client/entry-server.js"
+    },
+    {
+      "source": "/base.css",
+      "destination": "/dist/client/base.css"
+    },
+    {
       "source": "/(.*)",
       "destination": "/server.js"
     }

@@ -9,7 +9,14 @@ export default defineConfig({
     outDir: path.resolve(__dirname, 'dist/client'),
     assetsDir: 'assets',
     sourcemap: true,
-    ssrManifest: true
+    ssrManifest: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'client/index.html'),
+        'entry-client': path.resolve(__dirname, 'client/entry-client.jsx'),
+        'entry-server': path.resolve(__dirname, 'client/entry-server.jsx')
+      }
+    }
   },
   resolve: {
     alias: {
