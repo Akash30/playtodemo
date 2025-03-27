@@ -20,8 +20,6 @@ export default function App({ url }) {
   const peerConnection = useRef(null);
   const audioElement = useRef(null);
 
-  console.log("App component is running"); // Line added to test whether this is running
-
   // Initialize chat events from localStorage when component mounts
   useEffect(() => {
     const storage = getLocalStorage();
@@ -390,8 +388,12 @@ const TrainingExamples = 'Below are some training examples for how socratic meth
 
   // Use the url prop from server or fallback to window.location
   const path = url || (typeof window !== 'undefined' ? window.location.pathname : '/');
+  console.log("Current path:", path); // Add logging
 
-  return path === '/chat' ? (
+  // Ensure path is normalized
+  const normalizedPath = path.replace(/\/+$/, ''); // Remove trailing slashes
+
+  return normalizedPath === '/chat' ? (
     <Chat events={chatEvents} />
   ) : (
     <div className="h-screen w-screen flex items-center justify-center bg-white">

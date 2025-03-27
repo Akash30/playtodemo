@@ -52,6 +52,7 @@ app.get("/token", async (req, res) => {
 // Render the React client
 app.use("*", async (req, res, next) => {
   const url = req.originalUrl;
+  console.log("Handling URL:", url);
 
   try {
     const template = await vite.transformIndexHtml(
@@ -63,6 +64,7 @@ app.use("*", async (req, res, next) => {
     const html = template.replace(`<!--ssr-outlet-->`, appHtml?.html);
     res.status(200).set({ "Content-Type": "text/html" }).end(html);
   } catch (e) {
+    console.error("SSR Error:", e);
     vite.ssrFixStacktrace(e);
     next(e);
   }
