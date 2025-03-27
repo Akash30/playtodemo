@@ -2,7 +2,10 @@ import express from "express";
 import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import "dotenv/config";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = process.env.PORT || 3000;
 const apiKey = process.env.API_TOKEN;
@@ -47,7 +50,7 @@ app.use("*", async (req, res, next) => {
   try {
     const template = await vite.transformIndexHtml(
       url,
-      fs.readFileSync("./client/index.html", "utf-8"),
+      fs.readFileSync(path.join(__dirname, "./client/index.html"), "utf-8"),
     );
     const { render } = await vite.ssrLoadModule("./client/entry-server.jsx");
     const appHtml = await render(url);
@@ -59,6 +62,12 @@ app.use("*", async (req, res, next) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Express server running on *:${port}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Express server running on *:${port}`);
+  });
+}
+
+// For Vercel
+export default app;
