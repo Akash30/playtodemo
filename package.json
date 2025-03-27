@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "build": "echo 'Starting build...' && npm run build:client && npm run build:server",
-    "build:client": "echo 'Building client...' && vite build --ssr entry-client.jsx",
+    "build": "echo 'Starting build...' && rm -rf dist && mkdir -p dist && npm run build:client && npm run build:server && cp client/index.html dist/client/",
+    "build:client": "echo 'Building client...' && vite build",
     "build:server": "echo 'Building server...' && vite build --ssr entry-server.jsx",
     "preview": "vite preview",
     "devinstall": "zx ../../devinstall.mjs -- node server.js --dev",

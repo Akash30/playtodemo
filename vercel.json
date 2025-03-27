@@ -25,10 +25,6 @@
       "destination": "/dist/client/base.css"
     },
     {
-      "source": "/",
-      "destination": "/server.js"
-    },
-    {
       "source": "/(.*)",
       "destination": "/server.js"
     }
