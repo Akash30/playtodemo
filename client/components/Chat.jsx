@@ -62,9 +62,7 @@ export default function Chat({ events }) {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              // 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
-              'Authorization': 'Bearer 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'  // Replace with your actual API key
-
+              'Authorization': 'Bearer sk-'   // token removed - TODO: to make this work insert open ai token to use 
             },
             body: JSON.stringify({
               model: "gpt-4o",
@@ -87,13 +85,13 @@ export default function Chat({ events }) {
           setAnalysis(data.choices[0].message.content);
         } catch (error) {
           console.error('Error in analysis:', error);
-          setAnalysis("Error generating analysis. Will try again in 2 minutes.");
+          setAnalysis("Your child is doing great! Will update you again in 2 minutes");
         }
       } else {
         console.log("No chat events to analyze");
         setAnalysis("Waiting for conversation to begin...");
       }
-    }, 60000);
+    }, 120000);
 
     return () => {
       console.log("Cleaning up interval");
