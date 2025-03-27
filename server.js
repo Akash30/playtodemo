@@ -65,10 +65,7 @@ app.use("*", async (req, res, next) => {
     if (process.env.NODE_ENV === 'production') {
       // In production, serve the pre-rendered HTML
       const template = fs.readFileSync(path.join(__dirname, 'dist/client/index.html'), 'utf-8');
-      const { render } = await import('./dist/server/entry-server.js');
-      const appHtml = await render(url);
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml?.html);
-      res.status(200).set({ "Content-Type": "text/html" }).end(html);
+      res.status(200).set({ "Content-Type": "text/html" }).end(template);
     } else {
       // In development, use Vite's SSR
       const vite = await createViteServer({
