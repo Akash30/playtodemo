@@ -10,10 +10,10 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/server.js"
+      "destination": "/dist/server/index.js"
     }
   ],
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/client",
+  "outputDirectory": "dist",
   "framework": "vite"
 } 
