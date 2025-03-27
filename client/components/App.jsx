@@ -388,7 +388,7 @@ const TrainingExamples = 'Below are some training examples for how socratic meth
 
   // Use the url prop from server or fallback to window.location
   const path = url || (typeof window !== 'undefined' ? window.location.pathname : '/');
-  console.log("Current path:", path); // Add logging
+  console.log("Current path ", path); // Add logging
 
   // Ensure path is normalized
   const normalizedPath = path.replace(/\/+$/, ''); // Remove trailing slashes
