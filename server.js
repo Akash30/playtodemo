@@ -53,21 +53,20 @@ app.get("/token", async (req, res) => {
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
+  // Serve static files from the dist/client directory
   app.use(express.static(path.join(__dirname, 'dist/client')));
-}
+  
+  // Handle client-side routing
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/client/index.html'));
+  });
+} else {
+  // In development, use Vite's SSR
+  app.use("*", async (req, res, next) => {
+    const url = req.originalUrl;
+    console.log("Handling URL:", url);
 
-// Render the React client
-app.use("*", async (req, res, next) => {
-  const url = req.originalUrl;
-  console.log("Handling URL:", url);
-
-  try {
-    if (process.env.NODE_ENV === 'production') {
-      // In production, serve the pre-rendered HTML
-      const template = fs.readFileSync(path.join(__dirname, 'dist/client/index.html'), 'utf-8');
-      res.status(200).set({ "Content-Type": "text/html" }).end(template);
-    } else {
-      // In development, use Vite's SSR
+    try {
       const vite = await createViteServer({
         server: { middlewareMode: true },
         appType: "custom",
@@ -80,15 +79,13 @@ app.use("*", async (req, res, next) => {
       const appHtml = await render(url);
       const html = template.replace(`<!--ssr-outlet-->`, appHtml?.html);
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
-    }
-  } catch (e) {
-    console.error("SSR Error:", e);
-    if (process.env.NODE_ENV !== 'production') {
+    } catch (e) {
+      console.error("SSR Error:", e);
       vite.ssrFixStacktrace(e);
+      next(e);
     }
-    next(e);
-  }
-});
+  });
+}
 
 // For local development
 if (process.env.NODE_ENV !== 'production') {
