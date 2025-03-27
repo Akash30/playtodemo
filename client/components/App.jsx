@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import logo from "/assets/panda.jpeg";
 import Chat from "./Chat";
 import playtoLogo from "/assets/playto-logo.png";
@@ -393,71 +394,80 @@ const TrainingExamples = 'Below are some training examples for how socratic meth
   // Ensure path is normalized
   const normalizedPath = path.replace(/\/+$/, ''); // Remove trailing slashes
 
-  return normalizedPath === '/chat' ? (
-    <Chat events={chatEvents} />
-  ) : (
-    <div className="h-screen w-screen flex items-center justify-center bg-white">
-      <div className="flex flex-col items-center gap-12">
-      <img 
-        src={playtoLogo} 
-        alt="Playto Logo" 
-        className="w-96 object-contain mb-1"  // Adjust width and margin as needed
-      />
-        <h1 className="text-2xl font-bold text-gray-800 max-w-xl text-center">
-          Bop us in the tummies to start learning!
-        </h1>
-        <div className="relative">
-          <img
-            src={logo}
-            alt="Winnie and Po Pandas"
-            className="w-64 h-64 object-contain"
-          />
-         
-          {/* Speech bubble for Winnie */}
-          <div className="absolute left-0 top-0 transform -translate-y-8 -translate-x-4">
-            <div className="bg-white rounded-2xl p-2 shadow-lg relative">
-              <div className="text-sm font-medium">Hi! I'm Winnie!</div>
-              <div className="absolute bottom-0 left-8 transform translate-y-2">
-                <div className="w-4 h-4 bg-white rotate-45 transform origin-center"></div>
+  return (
+    <Routes>
+      <Route path="/" element={
+        <div className="h-screen w-screen flex items-center justify-center bg-white">
+          <div className="flex flex-col items-center gap-12">
+            <img 
+              src={playtoLogo} 
+              alt="Playto Logo" 
+              className="w-96 object-contain mb-1"
+            />
+            <h1 className="text-2xl font-bold text-gray-800 max-w-xl text-center">
+              Bop us in the tummies to start learning!
+            </h1>
+            <div className="relative">
+              <img
+                src={logo}
+                alt="Winnie and Po Pandas"
+                className="w-64 h-64 object-contain"
+              />
+             
+              {/* Speech bubble for Winnie */}
+              <div className="absolute left-0 top-0 transform -translate-y-8 -translate-x-4">
+                <div className="bg-white rounded-2xl p-2 shadow-lg relative">
+                  <div className="text-sm font-medium">Hi! I'm Winnie!</div>
+                  <div className="absolute bottom-0 left-8 transform translate-y-2">
+                    <div className="w-4 h-4 bg-white rotate-45 transform origin-center"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Speech bubble for Po */}
+              <div className="absolute right-0 top-0 transform -translate-y-8 translate-x-4">
+                <div className="bg-white rounded-2xl p-2 shadow-lg relative">
+                  <div className="text-sm font-medium">Hi! I'm Po!</div>
+                  <div className="absolute bottom-0 right-8 transform translate-y-2">
+                    <div className="w-4 h-4 bg-white rotate-45 transform origin-center"></div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          
-          {/* Speech bubble for Po */}
-          <div className="absolute right-0 top-0 transform -translate-y-8 translate-x-4">
-            <div className="bg-white rounded-2xl p-2 shadow-lg relative">
-              <div className="text-sm font-medium">Hi! I'm Po!</div>
-              <div className="absolute bottom-0 right-8 transform translate-y-2">
-                <div className="w-4 h-4 bg-white rotate-45 transform origin-center"></div>
-              </div>
-            </div>
+           
+            {isSessionActive && (
+              <>
+                <img
+                  src={audioWaveGif}
+                  alt="Audio Visualization"
+                  className="w-32 h-32 mt-4"
+                />
+                <div className="flex gap-4">
+                  <button
+                    onClick={stopSession}
+                    className="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                  >
+                    Stop
+                  </button>
+                  <a
+                    href="/chat"
+                    className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                  >
+                    View Chat
+                  </a>
+                </div>
+              </>
+            )}
+            {!isSessionActive && (
+              <div
+                className="cursor-pointer absolute inset-0"
+                onClick={startSession}
+              />
+            )}
           </div>
         </div>
-       
-        {isSessionActive && (
-          <>
-            <img
-              src={audioWaveGif}
-              alt="Audio Visualization"
-              className="w-32 h-32 mt-4"
-            />
-            <div className="flex gap-4">
-              <button
-                onClick={stopSession}
-                className="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-              >
-                Stop
-              </button>
-            </div>
-          </>
-        )}
-        {!isSessionActive && (
-          <div
-            className="cursor-pointer absolute inset-0"
-            onClick={startSession}
-          />
-        )}
-      </div>
-    </div>
+      } />
+      <Route path="/chat" element={<Chat events={chatEvents} />} />
+    </Routes>
   );
 }
