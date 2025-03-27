@@ -17,6 +17,14 @@
       "destination": "/dist/client/entry-client.js"
     },
     {
+      "source": "/chat",
+      "destination": "/dist/client/entry-server.js"
+    },
+    {
+      "source": "/",
+      "destination": "/dist/client/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/dist/client/index.html"
     }

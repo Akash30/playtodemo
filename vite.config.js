@@ -29,7 +29,4 @@ export default defineConfig({
       '/assets': path.resolve(__dirname, './client/assets')
     }
   },
-  server: {
-    port: 3000
-  }
 })
