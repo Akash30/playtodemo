@@ -29,7 +29,7 @@
       "destination": "/dist/client/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/chat",
       "destination": "/dist/client/index.html"
     }
   ],
