@@ -1,20 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import fs from 'fs'
 
 export default defineConfig({
-  plugins: [
-    react(),
-    {
-      name: 'copy-index-html',
-      closeBundle() {
-        const srcPath = path.resolve(__dirname, 'client/index.html')
-        const destPath = path.resolve(__dirname, 'dist/client/index.html')
-        fs.copyFileSync(srcPath, destPath)
-      }
-    }
-  ],
+  plugins: [react()],
   root: path.resolve(__dirname, 'client'),
   build: {
     outDir: path.resolve(__dirname, 'dist/client'),
