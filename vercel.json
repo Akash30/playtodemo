@@ -25,6 +25,14 @@
       "destination": "/dist/client/base.css"
     },
     {
+      "source": "/chat",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/",
+      "destination": "/server.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/server.js"
     }
