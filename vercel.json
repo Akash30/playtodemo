@@ -23,18 +23,6 @@
     {
       "source": "/base.css",
       "destination": "/dist/client/base.css"
-    },
-    {
-      "source": "/chat",
-      "destination": "/server.js"
-    },
-    {
-      "source": "/",
-      "destination": "/server.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/server.js"
     }
   ],
   "buildCommand": "npm run build",
