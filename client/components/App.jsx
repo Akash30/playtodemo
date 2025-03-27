@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import logo from "/assets/panda.jpeg";
 import Chat from "./Chat";
 import playtoLogo from "/assets/playto-logo.png";
@@ -20,6 +20,7 @@ export default function App({ url }) {
   const [dataChannel, setDataChannel] = useState(null);
   const peerConnection = useRef(null);
   const audioElement = useRef(null);
+  const location = useLocation();
 
   // Initialize chat events from localStorage when component mounts
   useEffect(() => {
@@ -387,12 +388,9 @@ const TrainingExamples = 'Below are some training examples for how socratic meth
     }
   }, [dataChannel]);
 
-  // Use the url prop from server or fallback to window.location
-  const path = url || (typeof window !== 'undefined' ? window.location.pathname : '/');
-  console.log("Current path ", path); // Add logging
-
-  // Ensure path is normalized
-  const normalizedPath = path.replace(/\/+$/, ''); // Remove trailing slashes
+  // Use the url prop from server or fallback to location
+  const currentPath = url || location.pathname;
+  console.log("Current path:", currentPath);
 
   return (
     <Routes>
