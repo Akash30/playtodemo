@@ -23,6 +23,14 @@
     {
       "source": "/base.css",
       "destination": "/dist/client/base.css"
+    },
+    {
+      "source": "/",
+      "destination": "/dist/client/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/dist/client/index.html"
     }
   ],
   "buildCommand": "npm run build",
