@@ -16,5 +16,5 @@
   "buildCommand": "npm run build",
   "framework": "vite",
   "installCommand": "npm install",
-  "outputDirectory": "client"
+  "outputDirectory": "/dist"
 } 
