@@ -10,11 +10,17 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: true,
     ssrManifest: true,
-    emptyOutDir: true,
+    // emptyOutDir: true,
     rollupOptions: {
       input: {
+        main: path.resolve(__dirname, 'client/index.html'),
         'entry-client': path.resolve(__dirname, 'client/entry-client.jsx'),
         'entry-server': path.resolve(__dirname, 'client/entry-server.jsx')
+      },
+      output: {
+        entryFileNames: (chunkInfo) => {
+          return chunkInfo.name === 'entry-client' ? 'entry-client.js' : '[name].js'
+        }
       }
     }
   },
