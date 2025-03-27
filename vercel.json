@@ -15,6 +15,5 @@
   ],
   "buildCommand": "npm run build",
   "framework": "vite",
-  "installCommand": "npm install",
-  "outputDirectory": "./diasdasdst"
+  "installCommand": "npm install"
 } 
