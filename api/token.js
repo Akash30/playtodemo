@@ -1,11 +1,17 @@
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
+  }
+
+  if (!process.env.API_TOKEN) {
+    console.error('API_TOKEN is not set');
+    return res.status(500).json({ error: 'API token not configured' });
   }
 
   try {
@@ -23,6 +29,12 @@ export default async function handler(req, res) {
         }),
       }
     );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('OpenAI API error:', errorData);
+      return res.status(response.status).json(errorData);
+    }
 
     const data = await response.json();
     res.status(200).json(data);

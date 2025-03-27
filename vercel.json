@@ -5,6 +5,10 @@
       "destination": "/api/:path*"
     },
     {
+      "source": "/token",
+      "destination": "/api/token"
+    },
+    {
       "source": "/(.*)",
       "destination": "/server.js"
     }

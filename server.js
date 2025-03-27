@@ -35,6 +35,12 @@ app.get("/token", async (req, res) => {
       },
     );
 
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('OpenAI API error:', errorData);
+      return res.status(response.status).json(errorData);
+    }
+
     const data = await response.json();
     res.json(data);
   } catch (error) {
