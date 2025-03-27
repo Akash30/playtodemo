@@ -13,8 +13,8 @@
       "destination": "/server/index.js"
     }
   ],
-  "buildCommand": "npm run build && ls /vercel/output/",
+  "buildCommand": "npm run build",
   "framework": "vite",
   "installCommand": "npm install",
-  "outputDirectory": "/vercel/output/dist"
+  "outputDirectory": "client/dist"
 } 
