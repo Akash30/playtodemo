@@ -10,7 +10,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/dist/server/index.js"
+      "destination": "/server/index.js"
     }
   ],
   "buildCommand": "npm run build",
