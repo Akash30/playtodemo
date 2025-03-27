@@ -10,7 +10,6 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: true,
     ssrManifest: true,
-    // emptyOutDir: true,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'client/index.html'),
