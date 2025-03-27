@@ -92,7 +92,12 @@ app.use("*", async (req, res, next) => {
     if (process.env.NODE_ENV !== 'production') {
       vite.ssrFixStacktrace(e);
     }
-    next(e);
+    // If SSR fails, serve the index.html file to let client-side routing handle it
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile(path.join(__dirname, 'dist/client/index.html'));
+    } else {
+      next(e);
+    }
   }
 });
 
